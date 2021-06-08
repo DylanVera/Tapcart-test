@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19D49f" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Cart" representedClassName="Cart" syncable="YES" codeGenerationType="class">
+        <relationship name="cartProduct" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CartProduct"/>
+    </entity>
+    <entity name="CartProduct" representedClassName="CartProduct" syncable="YES" codeGenerationType="class">
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="cartProduct" inverseEntity="Product"/>
+    </entity>
+    <entity name="Product" representedClassName="Product" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="cartProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CartProduct" inverseName="product" inverseEntity="CartProduct"/>
+    </entity>
+    <elements>
+        <element name="Cart" positionX="185.3046875" positionY="-148.95703125" width="128" height="58"/>
+        <element name="CartProduct" positionX="189.9296875" positionY="3.0625" width="128" height="58"/>
+        <element name="Product" positionX="425.38671875" positionY="31.13671875" width="128" height="28"/>
+    </elements>
+</model>
