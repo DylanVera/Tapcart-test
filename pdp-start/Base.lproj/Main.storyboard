@@ -33,9 +33,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="6PI-lR-57N" kind="show" identifier="ShowProductDetailSegue" id="mjr-5c-Ykb"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -66,16 +63,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yNU-UX-rox" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-139.13043478260872" y="129.91071428571428"/>
-        </scene>
-        <!--ProductDetail-->
-        <scene sceneID="ORw-bw-VoJ">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ProductDetail" id="6PI-lR-57N" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="maU-pg-0zq"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yof-96-KmG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1445" y="130"/>
         </scene>
     </scenes>
     <resources>

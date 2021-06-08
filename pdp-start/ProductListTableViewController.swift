@@ -57,6 +57,9 @@ extension ProductListTableViewController {
 
 extension ProductListTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let product = products[indexPath.row]
+        let detailViewController = DetailViewController()
+        detailViewController.product = product
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
