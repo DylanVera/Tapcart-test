@@ -7,9 +7,25 @@
 //
 
 import UIKit
+import DropDown
 
 class ProductOptionsTableViewCell: UITableViewCell {
     static let identifier = "ProductOptionsCell"
 
+    var options: [ProductOption]!
+    var optionPickers = [UIPickerView]()
     
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureOptions() {
+        for option in options {
+            print(option)
+        }
+    }
 }

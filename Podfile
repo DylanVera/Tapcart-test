@@ -7,6 +7,7 @@ target 'pdp-start' do
 
   # Pods for pdp-start
   pod 'SDWebImage', '~> 5.0'
+  pod 'DropDown'
   
   target 'pdp-startTests' do
     inherit! :search_paths

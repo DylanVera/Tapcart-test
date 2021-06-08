@@ -9,13 +9,16 @@
 import UIKit
 import SDWebImage
 
-class ProductDetailViewController: UITableViewController, AddToCartDelegate  {
+class ProductDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddToCartDelegate {
     var product: Product?
+    @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(UINib(nibName: "ProductInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductInfoCell")
-//        tableView.register(UINib(nibName: "ProductOptionsTableCellView", bundle: nil), forCellReuseIdentifier: "ProductOptionsCell")
+        tableView.register(ProductOptionsTableViewCell.self, forCellReuseIdentifier: "ProductOptionsCell")
         tableView.register(UINib(nibName: "AddToCartTableViewCell", bundle: nil), forCellReuseIdentifier: "AddToCartCell")
 //        productTitle.text = product?.title
         // Do any additional setup after loading the view.
@@ -41,11 +44,11 @@ class ProductDetailViewController: UITableViewController, AddToCartDelegate  {
 }
 
 extension ProductDetailViewController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductInfoCell") as! ProductInfoTableViewCell
             cell.productTitleLabel.text = product?.title
@@ -55,6 +58,7 @@ extension ProductDetailViewController {
         else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductOptionsCell") as! ProductOptionsTableViewCell
             //set the data here
+            cell.options = product?.options
             return cell
         }
         else {

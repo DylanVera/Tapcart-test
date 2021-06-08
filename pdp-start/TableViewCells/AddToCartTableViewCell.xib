@@ -25,6 +25,9 @@
                         <state key="normal" title="Add to Cart">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <connections>
+                            <action selector="didTapButtonWithSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="GGS-rG-BHx"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
