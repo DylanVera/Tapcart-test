@@ -14,4 +14,9 @@ class SelectedOption: Codable {
     
     /// Will be something like "m" or "red"
     var value: String
+    
+    init(name: String, value: String) {
+        self.name = name
+        self.value = value
+    }
 }

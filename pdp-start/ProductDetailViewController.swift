@@ -8,53 +8,117 @@
 
 import UIKit
 import SDWebImage
+import DropDown
 
-class ProductDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddToCartDelegate {
+class ProductDetailViewController: UIViewController {
+    
     var product: Product?
-    @IBOutlet var tableView: UITableView!
+    var selectedOptions = [SelectedOption]()
+    
+    @IBOutlet weak var productImage: UIImageView!
+    @IBOutlet weak var productTitle: UILabel!
+    @IBOutlet weak var firstOptionButton: UIButton!
+    @IBOutlet weak var secondOptionButton: UIButton!
+    @IBOutlet weak var thirdOptionButton: UIButton!
+    
+    //MARK: - DropDown's
+    let firstOptionDropDown = DropDown()
+    let secondOptionDropDown = DropDown()
+    let thirdOptionDropDown = DropDown()
+    
+    lazy var dropDowns: [DropDown] = {
+        return [
+            self.firstOptionDropDown,
+            self.secondOptionDropDown,
+            self.thirdOptionDropDown,
+        ]
+    }()
+    
+    // DropDown Actions
+    @IBAction func chooseFirstOption(_ sender: AnyObject) {
+        firstOptionDropDown.show()
+    }
+    
+    @IBAction func chooseSecondOption(_ sender: AnyObject) {
+        secondOptionDropDown.show()
+    }
+    
+    @IBAction func chooseThirdOption(_ sender: AnyObject) {
+        thirdOptionDropDown.show()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: "ProductInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductInfoCell")
-        tableView.register(ProductOptionsTableViewCell.self, forCellReuseIdentifier: "ProductOptionsCell")
-        tableView.register(UINib(nibName: "AddToCartTableViewCell", bundle: nil), forCellReuseIdentifier: "AddToCartCell")
-//        productTitle.text = product?.title
-        // Do any additional setup after loading the view.
+        
+        productTitle.text = product?.title
+        productImage.sd_setImage(with: URL(string: product?.variants[0].image ?? ""), completed: nil)
+        dropDowns.forEach { $0.dismissMode = .onTap }
+        dropDowns.forEach { $0.direction = .any }
+        
+        if product?.options.count == 3 {
+            thirdOptionButton.isHidden = false
+        }
+        
+        setupDropDowns()
     }
     
     func configure(with product: Product) {
         self.product = product
     }
     
-    func addToCart(_ sender: UIButton) {
-        print("add to cart")
-    }
-}
+    func setupDropDowns() {
+        firstOptionDropDown.anchorView = firstOptionButton
+        firstOptionDropDown.bottomOffset = CGPoint(x: 0, y: firstOptionButton.bounds.height)
+        
+        firstOptionDropDown.dataSource = (product?.options[0].values)!
+        selectedOptions.append(SelectedOption(name: (product?.options[0].name)!, value: firstOptionDropDown.dataSource[0]))
+        firstOptionButton.setTitle(firstOptionDropDown.dataSource[0], for: .normal)
+        // Action triggered on selection
+        firstOptionDropDown.selectionAction = { [weak self] (index, item) in
+            self?.firstOptionButton.setTitle(item, for: .normal)
+            self?.selectedOptions[0].value = item
+            
+            //find matching variant and load image if necessary
+           DispatchQueue.main.async {
+            
+            self?.productImage.sd_setImage(with: URL(string: self?.product?.variants[(self?.product?.variants.count)! - 1].image ?? ""), completed: nil)
+            self?.productImage.setNeedsDisplay()
+           }
+            
+        }
+        
+        secondOptionDropDown.anchorView = secondOptionButton
+        secondOptionDropDown.bottomOffset = CGPoint(x: 0, y: secondOptionButton.bounds.height)
+        
+        secondOptionDropDown.dataSource = (product?.options[1].values)!
+        selectedOptions.append(SelectedOption(name: (product?.options[1].name)!, value: secondOptionDropDown.dataSource[0]))
+        secondOptionButton.setTitle(secondOptionDropDown.dataSource[0], for: .normal)
+        // Action triggered on selection
+        secondOptionDropDown.selectionAction = { [weak self] (index, item) in
+            self?.secondOptionButton.setTitle(item, for: .normal)
+            self?.selectedOptions[1].value = item
+        }
+        
+        if product?.options.count == 3{
+            thirdOptionDropDown.anchorView = thirdOptionButton
+            thirdOptionDropDown.bottomOffset = CGPoint(x: 0, y: thirdOptionButton.bounds.height)
 
-extension ProductDetailViewController {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+            thirdOptionDropDown.dataSource = (product?.options[2].values)!
+            selectedOptions.append(SelectedOption(name: (product?.options[2].name)!, value: thirdOptionDropDown.dataSource[0]))
+            thirdOptionButton.setTitle(thirdOptionDropDown.dataSource[0], for: .normal)
+            // Action triggered on selection
+            thirdOptionDropDown.selectionAction = { [weak self] (index, item) in
+                self?.thirdOptionButton.setTitle(item, for: .normal)
+                self?.selectedOptions[2].value = item
+            }
+        }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ProductInfoCell") as! ProductInfoTableViewCell
-            cell.productTitleLabel.text = product?.title
-            cell.productImageView.sd_setImage(with: URL(string: product?.variants[0].image ?? ""), completed: nil)
-            return cell
+    @IBAction func addToCart(_ sender: UIButton) {
+        var variantString = ""
+        for option in selectedOptions {
+            variantString += option.value + " "
         }
-        else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ProductOptionsCell") as! ProductOptionsTableViewCell
-            //set the data here
-            cell.options = product?.options
-            return cell
-        }
-        else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AddToCartCell") as! AddToCartTableViewCell
-            cell.delegate = self
-            return cell
-        }
+        print(variantString)
     }
 }

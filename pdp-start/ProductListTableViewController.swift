@@ -56,10 +56,10 @@ extension ProductListTableViewController {
 // MARK: - Table view delegate
 
 extension ProductListTableViewController {
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let product = products[indexPath.row]
-        let detailViewController = DetailViewController()
-        detailViewController.product = product
-        self.navigationController?.pushViewController(detailViewController, animated: true)
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let product = products[indexPath.row]
+//        let detailViewController = DetailViewController()
+//        detailViewController.product = product
+//        self.navigationController?.pushViewController(detailViewController, animated: true)
+//    }
 }
