@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Awg-eE-hdc">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -14,27 +14,27 @@
             <objects>
                 <viewController storyboardIdentifier="ProductDetail" id="Awg-eE-hdc" customClass="ProductDetailViewController" customModule="pdp_start" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ItH-N9-nAA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="N84-DJ-C0Z">
-                                <rect key="frame" x="32" y="94" width="350" height="683"/>
+                                <rect key="frame" x="32" y="26.666666666666686" width="350" height="683"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bSJ-ch-ra0">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="280"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="280" id="IvW-GB-QrT"/>
-                                            <constraint firstAttribute="width" constant="350" id="wog-Ch-e5t"/>
+                                            <constraint firstAttribute="width" secondItem="bSJ-ch-ra0" secondAttribute="height" multiplier="5:4" id="AJI-65-WM1"/>
+                                            <constraint firstAttribute="height" constant="280" id="mzu-5O-hzj"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SpJ-ya-uyp">
-                                        <rect key="frame" x="0.0" y="340" width="350" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="340" width="350" height="20.333333333333314"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="IZ5-Db-Ssv">
-                                        <rect key="frame" x="0.0" y="545.5" width="350" height="30"/>
+                                        <rect key="frame" x="0.0" y="545.66666666666674" width="350" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYO-BV-1JH">
                                                 <rect key="frame" x="0.0" y="0.0" width="175" height="30"/>
@@ -42,27 +42,27 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="chooseFirstOption:" destination="Awg-eE-hdc" eventType="touchUpInside" id="ZK8-Qf-cpa"/>
+                                                    <action selector="chooseOptionDropDown:" destination="Awg-eE-hdc" eventType="touchUpInside" id="5qx-ar-NJd"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="APu-dK-uzC">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="APu-dK-uzC">
                                                 <rect key="frame" x="175" y="0.0" width="175" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="chooseSecondOption:" destination="Awg-eE-hdc" eventType="touchUpInside" id="0cu-Dn-S9A"/>
+                                                    <action selector="chooseOptionDropDown:" destination="Awg-eE-hdc" eventType="touchUpInside" id="Yyn-ud-NmU"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Kj3-rz-kY1">
+                                            <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Kj3-rz-kY1">
                                                 <rect key="frame" x="350" y="0.0" width="0.0" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="chooseThirdOption:" destination="Awg-eE-hdc" eventType="touchUpInside" id="B2i-Co-79E"/>
+                                                    <action selector="chooseOptionDropDown:" destination="Awg-eE-hdc" eventType="touchUpInside" id="6EZ-4a-x4E"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -82,23 +82,26 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="e0l-42-OOB" firstAttribute="top" secondItem="IZ5-Db-Ssv" secondAttribute="bottom" constant="77.5" id="UAo-dq-Dvd"/>
+                                    <constraint firstItem="SpJ-ya-uyp" firstAttribute="top" secondItem="bSJ-ch-ra0" secondAttribute="bottom" constant="60" id="kt0-0A-qqw"/>
+                                    <constraint firstItem="e0l-42-OOB" firstAttribute="top" secondItem="IZ5-Db-Ssv" secondAttribute="bottom" constant="77.333333333333371" id="sCi-k5-5ZJ"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pb7-gD-kYb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="N84-DJ-C0Z" firstAttribute="top" secondItem="pb7-gD-kYb" secondAttribute="top" constant="50" id="CpR-ZM-k1i"/>
-                            <constraint firstItem="N84-DJ-C0Z" firstAttribute="centerX" secondItem="ItH-N9-nAA" secondAttribute="centerX" id="ak0-ET-NmN"/>
+                            <constraint firstItem="N84-DJ-C0Z" firstAttribute="centerX" secondItem="ItH-N9-nAA" secondAttribute="centerX" id="0H2-OP-rFW"/>
+                            <constraint firstItem="N84-DJ-C0Z" firstAttribute="leading" secondItem="pb7-gD-kYb" secondAttribute="leading" constant="32" id="0qx-ql-S0p"/>
+                            <constraint firstItem="pb7-gD-kYb" firstAttribute="trailing" secondItem="N84-DJ-C0Z" secondAttribute="trailing" constant="32" id="hPy-Zf-PZy"/>
+                            <constraint firstItem="N84-DJ-C0Z" firstAttribute="centerY" secondItem="ItH-N9-nAA" secondAttribute="centerY" id="jhJ-EE-Kke"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="firstOptionButton" destination="ZYO-BV-1JH" id="Kye-pW-MCa"/>
                         <outlet property="productImage" destination="bSJ-ch-ra0" id="PgC-cI-EHR"/>
                         <outlet property="productTitle" destination="SpJ-ya-uyp" id="hI9-vt-Efw"/>
-                        <outlet property="secondOptionButton" destination="APu-dK-uzC" id="VY1-dw-DQ3"/>
-                        <outlet property="thirdOptionButton" destination="Kj3-rz-kY1" id="5s4-0K-tCB"/>
+                        <outletCollection property="optionButtons" destination="ZYO-BV-1JH" collectionClass="NSMutableArray" id="y2q-NW-QNj"/>
+                        <outletCollection property="optionButtons" destination="APu-dK-uzC" collectionClass="NSMutableArray" id="bpO-J1-6DN"/>
+                        <outletCollection property="optionButtons" destination="Kj3-rz-kY1" collectionClass="NSMutableArray" id="0yT-WR-AZX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GL3-Jb-dhh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

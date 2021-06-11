@@ -16,7 +16,7 @@ class ProductService {
         var products: [Product]
     }
     
-    private func readLocalFile(forName name: String) -> Data? {
+    private func readLocalJSONFile(forName name: String) -> Data? {
         do {
             if let filePath = Bundle.main.path(forResource: name, ofType: "json") {
                 let fileUrl = URL(fileURLWithPath: filePath)
@@ -32,7 +32,7 @@ class ProductService {
     }
     
     func getProducts() -> [Product]? {
-        let jsonData = readLocalFile(forName: "products")
+        let jsonData = readLocalJSONFile(forName: "products")
         
         if let data = jsonData {
             do {

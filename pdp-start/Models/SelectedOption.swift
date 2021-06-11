@@ -20,3 +20,9 @@ class SelectedOption: Codable {
         self.value = value
     }
 }
+
+extension SelectedOption: Equatable {
+    static func == (lhs: SelectedOption, rhs: SelectedOption) -> Bool {
+        return lhs.name == rhs.name && lhs.value == rhs.value
+    }
+}

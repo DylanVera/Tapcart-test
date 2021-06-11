@@ -15,3 +15,13 @@ class ProductVariant: Codable {
     /// Will have up to 3 options
     var selectedOptions: [SelectedOption]
 }
+
+extension ProductVariant: CustomStringConvertible {
+    var description: String {
+        var optionString = ""
+        for option in selectedOptions{
+            optionString += option.value + " "
+        }
+        return optionString
+    }
+}

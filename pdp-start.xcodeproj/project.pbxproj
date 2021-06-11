@@ -30,8 +30,6 @@
 		DA2B6E9624622FE200A032FD /* ProductOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2B6E9524622FE200A032FD /* ProductOption.swift */; };
 		DA2B6E982462305600A032FD /* SelectedOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2B6E972462305600A032FD /* SelectedOption.swift */; };
 		DA2B6E9B246231F600A032FD /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2B6E9A246231F600A032FD /* ProductService.swift */; };
-		FC24DA4E266F495700908FD4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC24DA4D266F495700908FD4 /* DetailViewController.swift */; };
-		FC5578DC266F14E30080D228 /* ProductOptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5578DB266F14E30080D228 /* ProductOptionsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +86,6 @@
 		DA2B6E972462305600A032FD /* SelectedOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedOption.swift; sourceTree = "<group>"; };
 		DA2B6E9A246231F600A032FD /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		DA2B6EB224647D2F00A032FD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		FC24DA4D266F495700908FD4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		FC5578DB266F14E30080D228 /* ProductOptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOptionsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +169,6 @@
 				DA2B6E412461DC7A00A032FD /* SceneDelegate.swift */,
 				DA2B6E452461DC7A00A032FD /* Main.storyboard */,
 				DA2B6E762461E57200A032FD /* ProductListTableViewController.swift */,
-				FC24DA4D266F495700908FD4 /* DetailViewController.swift */,
 				DA2B6E782461E5A500A032FD /* ProductDetailViewController.swift */,
 				DA2B6E7D2461E7AC00A032FD /* ProductDetail.storyboard */,
 				DA2B6E832461ED1700A032FD /* TableViewCells */,
@@ -212,7 +207,6 @@
 				DA2B6E852461ED5A00A032FD /* ProductInfoTableViewCell.xib */,
 				DA2B6E8C2461ED9300A032FD /* AddToCartTableViewCell.swift */,
 				DA2B6E8D2461ED9300A032FD /* AddToCartTableViewCell.xib */,
-				FC5578DB266F14E30080D228 /* ProductOptionsTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -479,7 +473,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC24DA4E266F495700908FD4 /* DetailViewController.swift in Sources */,
 				DA2B6E9624622FE200A032FD /* ProductOption.swift in Sources */,
 				DA2B6E8E2461ED9300A032FD /* AddToCartTableViewCell.swift in Sources */,
 				DA2B6E9224622BE500A032FD /* Product.swift in Sources */,
@@ -488,7 +481,6 @@
 				DA2B6E772461E57200A032FD /* ProductListTableViewController.swift in Sources */,
 				DA2B6E982462305600A032FD /* SelectedOption.swift in Sources */,
 				DA2B6E862461ED5A00A032FD /* ProductInfoTableViewCell.swift in Sources */,
-				FC5578DC266F14E30080D228 /* ProductOptionsTableViewCell.swift in Sources */,
 				DA2B6E9424622F4C00A032FD /* ProductVariant.swift in Sources */,
 				DA2B6E422461DC7A00A032FD /* SceneDelegate.swift in Sources */,
 				DA2B6E792461E5A500A032FD /* ProductDetailViewController.swift in Sources */,

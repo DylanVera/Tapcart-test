@@ -14,12 +14,15 @@ class ProductDetailViewController: UIViewController {
     
     var product: Product?
     var selectedOptions = [SelectedOption]()
+    var selectedVariant: ProductVariant? {
+        didSet{
+            updateProductPhoto()
+        }
+    }
     
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productTitle: UILabel!
-    @IBOutlet weak var firstOptionButton: UIButton!
-    @IBOutlet weak var secondOptionButton: UIButton!
-    @IBOutlet weak var thirdOptionButton: UIButton!
+    @IBOutlet var optionButtons: [UIButton]!
     
     //MARK: - DropDown's
     let firstOptionDropDown = DropDown()
@@ -35,16 +38,8 @@ class ProductDetailViewController: UIViewController {
     }()
     
     // DropDown Actions
-    @IBAction func chooseFirstOption(_ sender: AnyObject) {
-        firstOptionDropDown.show()
-    }
-    
-    @IBAction func chooseSecondOption(_ sender: AnyObject) {
-        secondOptionDropDown.show()
-    }
-    
-    @IBAction func chooseThirdOption(_ sender: AnyObject) {
-        thirdOptionDropDown.show()
+    @IBAction func chooseOptionDropDown(_ sender: AnyObject) {
+        dropDowns[sender.tag].show()
     }
     
     override func viewDidLoad() {
@@ -56,69 +51,58 @@ class ProductDetailViewController: UIViewController {
         dropDowns.forEach { $0.direction = .any }
         
         if product?.options.count == 3 {
-            thirdOptionButton.isHidden = false
+            optionButtons[2].isHidden = false
         }
         
         setupDropDowns()
+        selectedVariant = findVariant()
     }
     
     func configure(with product: Product) {
         self.product = product
     }
     
+    func updateProductPhoto() {
+        if let variant = selectedVariant {
+            DispatchQueue.main.async {
+                self.productImage.sd_setImage(with: URL(string: variant.image), completed: nil)
+                self.productImage.setNeedsDisplay()
+            }
+        }
+    }
+    
+    func findVariant() -> ProductVariant? {
+        if let variants = product?.variants {
+            for variant in variants {
+                if variant.selectedOptions.elementsEqual(selectedOptions) {
+                    return variant
+                }
+            }
+        }
+        
+        return nil
+    }
+    
     func setupDropDowns() {
-        firstOptionDropDown.anchorView = firstOptionButton
-        firstOptionDropDown.bottomOffset = CGPoint(x: 0, y: firstOptionButton.bounds.height)
-        
-        firstOptionDropDown.dataSource = (product?.options[0].values)!
-        selectedOptions.append(SelectedOption(name: (product?.options[0].name)!, value: firstOptionDropDown.dataSource[0]))
-        firstOptionButton.setTitle(firstOptionDropDown.dataSource[0], for: .normal)
-        // Action triggered on selection
-        firstOptionDropDown.selectionAction = { [weak self] (index, item) in
-            self?.firstOptionButton.setTitle(item, for: .normal)
-            self?.selectedOptions[0].value = item
-            
-            //find matching variant and load image if necessary
-           DispatchQueue.main.async {
-            
-            self?.productImage.sd_setImage(with: URL(string: self?.product?.variants[(self?.product?.variants.count)! - 1].image ?? ""), completed: nil)
-            self?.productImage.setNeedsDisplay()
-           }
-            
-        }
-        
-        secondOptionDropDown.anchorView = secondOptionButton
-        secondOptionDropDown.bottomOffset = CGPoint(x: 0, y: secondOptionButton.bounds.height)
-        
-        secondOptionDropDown.dataSource = (product?.options[1].values)!
-        selectedOptions.append(SelectedOption(name: (product?.options[1].name)!, value: secondOptionDropDown.dataSource[0]))
-        secondOptionButton.setTitle(secondOptionDropDown.dataSource[0], for: .normal)
-        // Action triggered on selection
-        secondOptionDropDown.selectionAction = { [weak self] (index, item) in
-            self?.secondOptionButton.setTitle(item, for: .normal)
-            self?.selectedOptions[1].value = item
-        }
-        
-        if product?.options.count == 3{
-            thirdOptionDropDown.anchorView = thirdOptionButton
-            thirdOptionDropDown.bottomOffset = CGPoint(x: 0, y: thirdOptionButton.bounds.height)
-
-            thirdOptionDropDown.dataSource = (product?.options[2].values)!
-            selectedOptions.append(SelectedOption(name: (product?.options[2].name)!, value: thirdOptionDropDown.dataSource[0]))
-            thirdOptionButton.setTitle(thirdOptionDropDown.dataSource[0], for: .normal)
-            // Action triggered on selection
-            thirdOptionDropDown.selectionAction = { [weak self] (index, item) in
-                self?.thirdOptionButton.setTitle(item, for: .normal)
-                self?.selectedOptions[2].value = item
+        if let options = product?.options {
+            for i in 0..<options.count {
+                dropDowns[i].anchorView = optionButtons[i]
+                dropDowns[i].bottomOffset = CGPoint(x: 0, y: optionButtons[i].bounds.height)
+                dropDowns[i].dataSource = options[i].values
+                optionButtons[i].setTitle(dropDowns[i].dataSource[0], for: .normal)
+                selectedOptions.append(SelectedOption(name: options[i].name, value: dropDowns[i].dataSource[0]))
+                
+                
+                dropDowns[i].selectionAction = { [weak self] (index, item) in
+                    self?.optionButtons[i].setTitle(item, for: .normal)
+                    self?.selectedOptions[i].value = item
+                    self?.selectedVariant = self?.findVariant()
+                }
             }
         }
     }
     
     @IBAction func addToCart(_ sender: UIButton) {
-        var variantString = ""
-        for option in selectedOptions {
-            variantString += option.value + " "
-        }
-        print(variantString)
+        print(selectedVariant!)
     }
 }
