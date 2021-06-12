@@ -8,4 +8,4 @@
 ## Libraries/Tools used
 
 * [SDWebImage](https://github.com/SDWebImage/SDWebImage) - handles async image loading, caching etc.
-* [DropDown](https://github.com/AssistoLab/DropDown) - to create option dropdowns
+* [DropDown](https://github.com/AssistoLab/DropDown) - option dropdowns
