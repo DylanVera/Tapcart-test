@@ -18,11 +18,13 @@ class ProductService {
     
     private func readLocalJSONFile(forName name: String) -> Data? {
         do {
-            if let filePath = Bundle.main.path(forResource: name, ofType: "json") {
-                let fileUrl = URL(fileURLWithPath: filePath)
+            guard
+                let path = Bundle.main.path(forResource: "products", ofType: "json")
+                else { fatalError("Can't find json file") }
+            
+                let fileUrl = URL(fileURLWithPath: path)
                 let data = try Data(contentsOf: fileUrl)
                 return data
-            }
         }
         catch {
             print("error: \(error)")

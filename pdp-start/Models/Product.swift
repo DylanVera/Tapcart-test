@@ -19,3 +19,15 @@ class Product: Codable {
     /// The different type of product options possible
     var variants: [ProductVariant]
 }
+
+extension Product {
+    func findVariant(with options: [SelectedOption]) -> ProductVariant? {
+        for variant in variants {
+            if variant.selectedOptions.elementsEqual(options) {
+                return variant
+            }
+        }
+        
+        return nil
+    }
+}

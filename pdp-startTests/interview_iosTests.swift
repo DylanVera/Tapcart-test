@@ -11,17 +11,38 @@ import XCTest
 
 class interview_iosTests: XCTestCase {
 
+    var products: [Product]?
+    var product: Product?
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        //Fails to build because I don't think you can access the main bundle from unit tests
+        //If I had more time I would design the viewcontroller and models to be more easily testable
+        super.setUp()
+        products = ProductService.shared.getProducts()
+        product = products?[0]
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        products = nil
+        product = nil
+        super.tearDown()
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testFindVariant() throws {
+        let variant = product?.findVariant(with: (product?.variants[0].selectedOptions)!)
+        let unwrappedVal = try XCTUnwrap(variant)
+        XCTAssert(unwrappedVal.selectedOptions == product?.variants[0].selectedOptions)
+    }
+    
+    func testSelectedOptionEquatable() {
+        let testOptions = SelectedOption(name: "size", value: "sm")
+        XCTAssertTrue(product?.variants[0].selectedOptions[0] == testOptions)
+    }
+    
+    func testProductVariantPrintOutput() {
+        let test = product?.variants[0].description
+        XCTAssertTrue(test == "sm red")
     }
 
     func testPerformanceExample() throws {
