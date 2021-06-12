@@ -2,7 +2,7 @@
 
 ## Assumptions
 
-1. There be no more than 3 options per product.
+1. There will be no more than 3 options per product.
 2. Product variant options are in same order as product options.
 
 ## Libraries/Tools used
